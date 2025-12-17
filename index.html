@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocolo de Reabilitação - Pace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00A6A6;
+            --primary-dark: #006D77;
+            --primary-light: #E0F7F7;
+            --bg-light: #F8FAFB;
+            --white: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-light: #6B7280;
+            --alert-bg: #FEF3C7;
+            --alert-text: #92400E;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+            --radius: 16px;
+            --gradient: linear-gradient(135deg, #00A6A6 0%, #006D77 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(180deg, #F8FAFB 0%, #E8F4F5 100%);
+            color: var(--text-dark);
+            line-height: 1.7;
+            padding-bottom: 40px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 3px solid var(--primary);
+            padding: 24px 20px;
+            box-shadow: 0 2px 10px rgba(0, 166, 166, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text h1 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 4px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .patient-info {
+            text-align: right;
+        }
+
+        .patient-name {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .diagnosis {
+            font-size: 0.875rem;
+            color: var(--primary-dark);
+            background: var(--primary-light);
+            padding: 6px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 6px;
+            font-weight: 600;
+            border: 1px solid rgba(0, 166, 166, 0.2);
+        }
+
+        /* Disclaimer Section */
+        .safety-banner {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            color: var(--alert-text);
+            padding: 18px;
+            text-align: center;
+            font-size: 0.95rem;
+            border-bottom: 2px solid #FCD34D;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(146, 64, 14, 0.1);
+        }
+
+        /* Main Container */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 24px;
+        }
+
+        .intro-text {
+            background: var(--white);
+            padding: 32px;
+            border-radius: var(--radius);
+            margin-bottom: 40px;
+            border-left: 6px solid var(--primary);
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .intro-text:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 166, 166, 0.15);
+        }
+
+        .intro-text h2 {
+            font-size: 1.75rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .intro-text ul {
+            margin-top: 16px;
+        }
+
+        .intro-text li {
+            margin-bottom: 8px;
+            padding-left: 8px;
+        }
+
+        .section-title {
+            color: var(--primary-dark);
+            font-size: 1.75rem;
+            margin: 50px 0 30px 0;
+            padding-bottom: 16px;
+            border-bottom: 3px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: 700;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .badge-a {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(0, 166, 166, 0.3);
+        }
+
+        .badge-b {
+            background: linear-gradient(135deg, #006D77 0%, #004A52 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(0, 109, 119, 0.3);
+        }
+
+        /* Exercise Grid */
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+        }
+
+        /* Exercise Card */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 166, 166, 0.1);
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(0, 166, 166, 0.3);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
+
+        .exercise-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .reps-badge {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 0.875rem;
+            padding: 6px 14px;
+            border-radius: 8px;
+            white-space: nowrap;
+            border: 2px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0, 166, 166, 0.15);
+        }
+
+        .instructions {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .instructions strong {
+            color: var(--text-dark);
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .instructions .keyword {
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: inline;
+        }
+
+        .video-link {
+            display: inline-block;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            padding: 10px 16px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 166, 166, 0.2);
+        }
+
+        .video-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 166, 166, 0.3);
+            background: linear-gradient(135deg, #00B8B8 0%, #007A85 100%);
+        }
+
+        .video-link::before {
+            content: '▶ ';
+            margin-right: 6px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            padding: 48px 24px;
+            background: var(--gradient);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .footer-content p {
+            font-size: 1rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .footer-content strong {
+            font-weight: 700;
+            opacity: 1;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .logo {
+                flex-direction: column;
+                align-items: center;
+            }
+            .patient-info {
+                text-align: center;
+            }
+            .exercise-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .intro-text {
+                padding: 24px;
+            }
+            .card-content {
+                padding: 20px;
+            }
+            .section-title {
+                font-size: 1.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            main {
+                padding: 0 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            .exercise-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+        .card:nth-child(7) { animation-delay: 0.7s; }
+        .card:nth-child(8) { animation-delay: 0.8s; }
+        .card:nth-child(9) { animation-delay: 0.9s; }
+    </style>
+</head>
+<body>
+
+    <!-- Aviso de Segurança Superior -->
+    <div class="safety-banner">
+        <strong>⚠️ Atenção:</strong> Foco no Joelho Esquerdo (JE). Em caso de dor ou inchaço excessivo, contate seu fisioterapeuta.
+    </div>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-text">
+                    <h1>Clínica <span>Pace</span></h1>
+                    <p style="font-size: 0.9rem; color: #666;">Fisioterapia Esportiva</p>
+                </div>
+            </div>
+            <div class="patient-info">
+                <div class="patient-name">Paciente: Georgia</div>
+                <div class="diagnosis">PO: RLC JE (Ligamento Cruzado)</div>
+                <div style="font-size: 0.85rem; color: #888; margin-top: 2px;">Ft. Vitor Vaz - Crefito 3/297100</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Introdução -->
+        <section class="intro-text">
+            <h2 style="color: var(--primary-dark); margin-bottom: 10px;">Orientações do Treino</h2>
+            <p><strong>Foco:</strong> Fortalecimento muscular e estabilidade. Mantenha a qualidade do movimento em todas as repetições.</p>
+            <br>
+            <ul style="padding-left: 20px;">
+                <li>Mantenha a respiração fluida.</li>
+                <li>Respeite o limite de dor.</li>
+                <li>Siga as instruções de posicionamento e movimento.</li>
+            </ul>
+        </section>
+
+        <!-- TREINO A -->
+        <section id="treino-a">
+            <div class="section-title">
+                <span class="badge-a">TREINO A</span>
+                <h2>Cadeia Posterior & Controle</h2>
+            </div>
+
+            <div class="exercise-grid">
+                
+                <!-- Mesa Flexora -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Mesa Flexora Unilateral</div>
+                            <div class="reps-badge">4 x 8</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=YWJbCHmVdkA" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Sente-se na máquina de flexão de pernas (mesa flexora) com o <span class="keyword">Joelho Esquerdo (membro lesionado)</span> posicionado no aparelho. Ajuste o apoio do aparelho para que fique logo acima do <span class="keyword">tornozelo</span>, na parte posterior da perna. A perna direita deve estar apoiada no chão ou em um suporte. Mantenha o <span class="keyword">tronco ereto</span> e as costas apoiadas no encosto.
+                            <strong>Execução:</strong> Prioridade no <span class="keyword">Joelho Esquerdo</span>. Flexione o joelho, puxando o calcanhar em direção ao glúteo. Contraia os músculos da parte posterior da coxa (<span class="keyword">isquiotibiais</span>) durante a flexão. No topo do movimento, segure por um segundo. Desça lentamente e de forma controlada, sentindo o alongamento na parte posterior da coxa. A fase de descida (volta) deve ser <span class="keyword">lenta e controlada</span> para ganhar força excêntrica.
+                            <strong>Dicas:</strong> Mantenha o <span class="keyword">quadril estável</span> durante todo o movimento. Não use impulso ou balanço. O movimento deve ser apenas do <span class="keyword">joelho</span>, mantendo o tronco fixo. Se sentir dor no joelho esquerdo, reduza a amplitude ou o peso.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Stiff -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Stiff com Barra Livre</div>
+                            <div class="reps-badge">4 x 10</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=1uDiW5--rAE" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Fique em pé com os pés afastados na largura do <span class="keyword">quadril</span>. Segure a barra com as mãos afastadas na largura dos ombros, com as palmas voltadas para o corpo. Mantenha os joelhos <span class="keyword">levemente flexionados</span> (não totalmente esticados). O <span class="keyword">tronco</span> deve estar ereto, ombros para trás e peito erguido.
+                            <strong>Execução:</strong> Mantenha a <span class="keyword">coluna reta</span> durante todo o movimento. O movimento é no <span class="keyword">quadril</span> - empurre o bumbum para trás, como se fosse fechar uma porta com o glúteo. Desça a barra em direção ao chão, mantendo os joelhos levemente flexionados e a coluna neutra. Sinta o alongamento na parte posterior da coxa (<span class="keyword">isquiotibiais</span>). Desça até sentir um alongamento confortável (geralmente até a altura da canela ou um pouco abaixo). Retorne à posição inicial empurrando o quadril para frente e contraindo os glúteos.
+                            <strong>Dicas:</strong> Não arqueie ou curve a <span class="keyword">coluna lombar</span>. O movimento deve ser principalmente do <span class="keyword">quadril</span>, não da coluna. Mantenha os joelhos levemente flexionados para proteger a articulação. Se sentir dor no <span class="keyword">joelho esquerdo (membro lesionado)</span>, reduza a amplitude do movimento. O peso deve estar próximo ao corpo durante todo o exercício.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Hip Thrust -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Hip Thrust (Elevação Pélvica)</div>
+                            <div class="reps-badge">3 x 10</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=9ECcS84xNl8" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Sente-se no chão com as <span class="keyword">escápulas</span> apoiadas na borda de um banco ou step. Os joelhos devem estar dobrados em aproximadamente <span class="keyword">90 graus</span>, com os pés apoiados no chão, afastados na largura do quadril. Coloque a barra sobre o quadril (use uma almofada ou toalha para proteção). Mantenha os braços apoiados no banco para estabilidade.
+                            <strong>Execução:</strong> Contraia os <span class="keyword">glúteos</span> e o <span class="keyword">abdômen</span>. Empurre o chão com os pés e eleve o <span class="keyword">quadril</span>, levantando a barra. Suba até formar uma <span class="keyword">linha reta dos joelhos até os ombros</span>. No topo, contraia forte o <span class="keyword">glúteo</span> e mantenha por um segundo. Desça o quadril de forma controlada até quase tocar o chão, mantendo a tensão nos glúteos.
+                            <strong>Dicas:</strong> Mantenha os joelhos <span class="keyword">alinhados</span> com os pés, sem deixá-los abrirem ou fecharem. Não arquear excessivamente a <span class="keyword">coluna lombar</span> no topo. O movimento deve ser principalmente do <span class="keyword">quadril</span>, não da coluna. Mantenha o <span class="keyword">queixo</span> levemente para baixo para evitar hiperextensão cervical.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Caminhada Lateral -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Caminhada Lateral (Miniband)</div>
+                            <div class="reps-badge">3 x 10 passos</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=IyAiYq44MO4" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Coloque a <span class="keyword">miniband</span> (faixa elástica) ao redor dos <span class="keyword">joelhos</span> ou <span class="keyword">tornozelos</span>. Fique em pé com os pés afastados na largura do quadril. Flexione levemente os joelhos, assumindo uma <span class="keyword">posição de base</span> (como se estivesse pronto para se mover). Mantenha o <span class="keyword">tronco ereto</span>, peito erguido e <span class="keyword">abdômen contraído</span>.
+                            <strong>Execução:</strong> Mantenha os joelhos levemente flexionados durante todo o movimento. Dê um passo lateral com a perna esquerda, afastando o pé. Sinta a resistência da faixa elástica. Traga a perna direita para junto da esquerda, mantendo a tensão na faixa. Continue caminhando lateralmente, alternando a perna que inicia o movimento. Não deixe os joelhos fecharem - mantenha a tensão constante na faixa elástica. Faça os passos controlados e estáveis.
+                            <strong>Dicas:</strong> Mantenha o <span class="keyword">tronco estável</span> - não balance o corpo para os lados. Os pés devem apontar para frente, não para os lados. Não deixe os joelhos colapsarem para dentro (<span class="keyword">valgo</span>). Mantenha a <span class="keyword">postura ereta</span> durante todo o exercício. Se sentir dor no <span class="keyword">joelho esquerdo (membro lesionado)</span>, use uma faixa com menos resistência.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Panturrilha -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Panturrilha Unilateral Maq.</div>
+                            <div class="reps-badge">3 x 15 (cada)</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=Wr6Bik6Lrp4" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Sente-se na máquina de panturrilha ou fique em pé na máquina de panturrilha em pé. Ajuste o apoio para que fique na parte anterior dos pés (<span class="keyword">metatarsos</span>). Se estiver sentado, os joelhos devem estar em <span class="keyword">90 graus</span>. Se estiver em pé, os joelhos devem estar levemente flexionados. Priorize o <span class="keyword">Joelho Esquerdo (membro lesionado)</span>.
+                            <strong>Execução:</strong> Contraia os músculos da <span class="keyword">panturrilha</span> e eleve o corpo (ou o peso), ficando na ponta dos pés. Suba até a <span class="keyword">amplitude máxima</span>, sentindo a contração completa da panturrilha. Mantenha a posição no topo por um segundo, contraindo ao máximo. Desça lentamente, alongando a panturrilha e deixando o <span class="keyword">calcanhar</span> descer abaixo do nível do apoio, sentindo um alongamento na parte posterior da perna. Retorne à posição elevada de forma controlada.
+                            <strong>Dicas:</strong> O movimento deve ser <span class="keyword">lento e controlado</span>, especialmente na fase de descida. Mantenha o joelho levemente flexionado para evitar sobrecarga. Não balance o corpo - o movimento deve ser apenas do <span class="keyword">tornozelo</span>. Se sentir dor no <span class="keyword">joelho esquerdo (membro lesionado)</span>, reduza a amplitude ou o peso. Trabalhe uma perna de cada vez para focar no membro lesionado.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Saltos Step -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Saltos sobre step (leve)</div>
+                            <div class="reps-badge">3 x 6</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=cLSB_Zn0awM" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Fique em pé a aproximadamente <span class="keyword">30-50 centímetros</span> de distância de um step ou caixa baixa. Os pés devem estar afastados na largura do quadril. Mantenha o <span class="keyword">tronco ereto</span>, ombros relaxados e olhar para frente. Flexione levemente os joelhos, preparando-se para o salto.
+                            <strong>Execução:</strong> Flexione os joelhos e os quadris, descendo em um <span class="keyword">agachamento parcial</span>. Impulsione o corpo para cima e para frente, saltando sobre o step. Aterrisse com ambos os pés simultaneamente no centro do step, com os joelhos <span class="keyword">flexionados</span> para absorver o impacto. O foco deve estar na <span class="keyword">aterrissagem suave</span> (sem barulho), controlando o movimento. Mantenha o tronco ereto durante a aterrissagem. Desça do step de forma controlada, um pé de cada vez.
+                            <strong>Dicas:</strong> Comece com um step <span class="keyword">baixo</span> (15-20 cm) e aumente gradualmente conforme ganha confiança. A aterrissagem deve ser <span class="keyword">silenciosa</span> - se fizer barulho, o impacto está muito alto. Mantenha os joelhos <span class="keyword">alinhados</span> com os pés durante a aterrissagem. Se sentir dor ou instabilidade no <span class="keyword">joelho esquerdo (membro lesionado)</span>, reduza a altura do step ou pule o exercício temporariamente. Priorize a qualidade do movimento sobre a altura do salto.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Core Trio -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Trio de Core</div>
+                            <div class="reps-badge">Ver abaixo</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=K2UZq6uq_mY" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Para o <span class="keyword">Bird-dog</span>, fique em quatro apoios (posição de gato), com as mãos abaixo dos ombros e os joelhos abaixo dos quadris. Para a <span class="keyword">Prancha Frontal</span>, fique em posição de flexão, com os antebraços apoiados no chão. Para a <span class="keyword">Prancha Lateral</span>, deite-se de lado apoiada no antebraço.
+                            <strong>Execução:</strong> <strong>Bird-dog (Perdigueiro):</strong> 3x10 - Estenda simultaneamente o braço direito e a perna esquerda, mantendo o tronco estável. Retorne e repita com o lado oposto. <strong>Prancha Frontal:</strong> 3x40s - Mantenha o corpo em linha reta dos pés até a cabeça, contraindo o abdômen. <strong>Prancha Lateral:</strong> 2x30s (cada lado) - Eleve o quadril, formando uma linha reta do joelho até o ombro. Trabalhe ambos os lados, dando atenção especial ao <span class="keyword">lado esquerdo (membro lesionado)</span>.
+                            <strong>Dicas:</strong> Mantenha o <span class="keyword">abdômen contraído</span> em todos os exercícios. Não deixe o quadril cair ou subir demais. Respire de forma fluida durante a sustentação. Se sentir dor no <span class="keyword">joelho esquerdo</span>, ajuste a posição ou reduza o tempo de sustentação.
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- TREINO B -->
+        <section id="treino-b">
+            <div class="section-title">
+                <span class="badge-b">TREINO B</span>
+                <h2>Cadeia Anterior & Unipodal</h2>
+            </div>
+
+            <div class="exercise-grid">
+
+                <!-- Leg Press -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Leg Press Horizontal</div>
+                            <div class="reps-badge">3 x 8 (cada)</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=LhemNFp8WbI" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Sente-se na máquina de <span class="keyword">leg press horizontal</span> com as costas totalmente apoiadas no encosto. Coloque apenas o <span class="keyword">pé esquerdo (membro lesionado)</span> na plataforma, na altura do peito do pé. A perna direita deve estar apoiada no chão ou em um suporte. Mantenha o <span class="keyword">tronco ereto</span> e as costas apoiadas.
+                            <strong>Execução:</strong> Execução <span class="keyword">unilateral</span> (uma perna por vez). Flexione o joelho esquerdo, descendo a plataforma de forma controlada. Desça até que o joelho forme um ângulo de aproximadamente <span class="keyword">90 graus</span> (ou o máximo confortável). Mantenha o pé totalmente apoiado na plataforma. Empurre a plataforma para cima, estendendo o joelho, mas <span class="keyword">não estique totalmente</span> no final para evitar o <span class="keyword">bloqueio articular</span>. Mantenha uma leve flexão no joelho no final do movimento.
+                            <strong>Dicas:</strong> Controle a descida - não deixe a plataforma descer muito rápido. O movimento deve ser <span class="keyword">lento e controlado</span>. Não trave o joelho no final (bloqueio articular) para proteger a articulação. Mantenha o <span class="keyword">quadril estável</span> durante todo o movimento. Se sentir dor no <span class="keyword">joelho esquerdo (membro lesionado)</span>, reduza a amplitude ou o peso.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Extensora -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Cadeira Extensora Unilateral</div>
+                            <div class="reps-badge">4 x 6-8 (LE foco)</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=SDfoFK3xCz4" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Sente-se na máquina de extensão de pernas (cadeira extensora) com as costas totalmente apoiadas no encosto. Ajuste o apoio do aparelho para que fique logo acima do <span class="keyword">tornozelo esquerdo</span>, na parte anterior da perna. A perna direita deve estar apoiada no chão ou em um suporte. Mantenha o <span class="keyword">tronco ereto</span> e as costas apoiadas.
+                            <strong>Execução:</strong> Foco total no <span class="keyword">quadríceps</span> do <span class="keyword">Joelho Esquerdo (membro lesionado)</span>. Estenda o joelho esquerdo, levantando o peso de forma controlada. Contraia o quadríceps ao máximo no topo do movimento. Segure por <span class="keyword">1 segundo</span> no topo se possível, sentindo a contração máxima. Desça lentamente, controlando o movimento de retorno. Não deixe o peso descer muito rápido.
+                            <strong>Dicas:</strong> Mantenha o <span class="keyword">quadril estável</span> durante todo o movimento. Não use impulso ou balanço. O movimento deve ser apenas do <span class="keyword">joelho</span>, mantendo o tronco fixo. Se sentir dor no joelho esquerdo, reduza a amplitude ou o peso. Não estique totalmente o joelho no final para evitar sobrecarga na articulação.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Agachamento 1 Perna -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Agachamento Unipodal</div>
+                            <div class="reps-badge">4 x 6-8</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=c-ybGnalnQo" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Fique em pé, apoiada apenas na <span class="keyword">perna esquerda (membro lesionado)</span>. A perna direita deve estar elevada, com o joelho dobrado e o pé sem tocar o chão. Mantenha o <span class="keyword">tronco ereto</span>, ombros relaxados e olhar para frente. Pode usar um banco atrás para referência ou apoio lateral (cadeira ou parede) para <span class="keyword">equilíbrio</span> inicial.
+                            <strong>Execução:</strong> Mantenha o <span class="keyword">equilíbrio</span> sobre a perna esquerda. Flexione o joelho esquerdo e o <span class="keyword">quadril</span>, descendo o corpo como se fosse sentar no banco atrás de você. O movimento deve ser controlado e o joelho deve ficar <span class="keyword">alinhado com o segundo dedo do pé</span>, sem colapsar para dentro. Desça até um ângulo confortável (inicialmente pode ser apenas uma leve flexão). Mantenha o <span class="keyword">tronco ereto</span> e o <span class="keyword">abdômen contraído</span>. Empurre o chão com o pé para retornar à posição inicial, estendendo o joelho e o quadril.
+                            <strong>Dicas:</strong> Mantenha o joelho <span class="keyword">alinhado</span> - não deixe ele colapsar para dentro (<span class="keyword">valgo</span>). O tronco deve permanecer ereto durante todo o movimento. Comece com uma <span class="keyword">amplitude pequena</span> e aumente gradualmente conforme ganha força e estabilidade. Se sentir instabilidade, use apoio (cadeira ou parede) e reduza gradualmente o apoio conforme progride. Se sentir dor no <span class="keyword">joelho esquerdo</span>, reduza a amplitude ou use mais apoio.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Afundo -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Afundo (Barra ou Halter)</div>
+                            <div class="reps-badge">3 x 10 (cada)</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=-yxNPwWlr8I" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Fique em pé com os pés afastados na largura do <span class="keyword">quadril</span>. Segure a barra ou halteres nas mãos, com os braços ao longo do corpo. Mantenha o <span class="keyword">tronco ereto</span>, ombros relaxados e olhar para frente. Para o afundo com passo, dê um passo para trás com a perna direita, mantendo a <span class="keyword">perna esquerda (membro lesionado)</span> à frente.
+                            <strong>Execução:</strong> Flexione os dois joelhos simultaneamente, descendo o corpo em direção ao chão. O joelho de trás deve descer em direção ao solo, mas sem tocá-lo. O joelho da frente (esquerdo) deve ficar <span class="keyword">alinhado com o tornozelo</span>, sem ultrapassar a linha dos dedos do pé. Mantenha o <span class="keyword">tronco firme</span> e <span class="keyword">ereto</span>, com o <span class="keyword">abdômen contraído</span>. O joelho da frente deve permanecer <span class="keyword">estável</span> durante todo o movimento. Empurre o chão com o <span class="keyword">calcanhar</span> da perna da frente para retornar à posição inicial.
+                            <strong>Dicas:</strong> Mantenha o joelho da frente <span class="keyword">alinhado</span> com o segundo dedo do pé. Evite que o joelho da frente ultrapasse a linha dos dedos. O tronco deve permanecer <span class="keyword">vertical</span> durante todo o movimento. Se necessário, segure em uma cadeira ou parede para apoio inicial. Se sentir dor no <span class="keyword">joelho esquerdo (membro lesionado)</span>, reduza a amplitude do movimento.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Step Up -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Subida no Step (Step Up)</div>
+                            <div class="reps-badge">3 x 10 (cada)</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=9ZknEYboBOQ" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Fique em pé em frente a um step ou caixa, com a altura aproximadamente na altura do joelho ou um pouco abaixo. Coloque o <span class="keyword">pé esquerdo (membro lesionado)</span> totalmente apoiado no topo do step. A perna direita deve estar no chão, com o pé apoiado. Mantenha o <span class="keyword">tronco ereto</span>, ombros relaxados e olhar para frente.
+                            <strong>Execução:</strong> A força deve estar na perna que está em cima da caixa (esquerda) para subir. Contraia o <span class="keyword">quadríceps</span> e o <span class="keyword">glúteo</span> da perna esquerda. Empurre o chão com o pé esquerdo, estendendo o joelho e o quadril para subir no step. Evite impulsionar com a perna de baixo (direita) - ela deve apenas seguir o movimento. Suba até que a perna esquerda esteja totalmente estendida. Desça de forma controlada, primeiro com a perna direita e depois com a esquerda.
+                            <strong>Dicas:</strong> Mantenha o <span class="keyword">tronco ereto</span> durante todo o movimento. O joelho da perna que está trabalhando deve ficar <span class="keyword">alinhado</span> com o segundo dedo do pé. Não deixe o joelho colapsar para dentro. O movimento deve ser <span class="keyword">controlado</span>, especialmente na descida. Se sentir dor no <span class="keyword">joelho esquerdo (membro lesionado)</span>, use um step mais baixo ou reduza a amplitude.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Panturrilha Degrau -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Panturrilha no degrau</div>
+                            <div class="reps-badge">3 x 20</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=HvvqTpTongY" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Fique em pé sobre um <span class="keyword">degrau ou step</span>, com apenas a parte anterior do <span class="keyword">pé esquerdo (membro lesionado)</span> apoiada na borda. O <span class="keyword">calcanhar</span> deve estar livre, pendurado abaixo do nível do degrau. Segure um halter na mão do mesmo lado ou na mão oposta. Se necessário, segure em uma parede ou corrimão para manter o equilíbrio. Mantenha os joelhos levemente flexionados e o <span class="keyword">tronco ereto</span>.
+                            <strong>Execução:</strong> Contraia os músculos da <span class="keyword">panturrilha</span> e eleve o corpo, ficando na ponta do pé. Suba até a <span class="keyword">amplitude máxima</span>, sentindo a contração completa da panturrilha. Mantenha a posição no topo por um segundo, contraindo ao máximo. Desça lentamente, aproveitando a <span class="keyword">amplitude negativa</span> - deixe o <span class="keyword">calcanhar</span> descer além do degrau, sentindo um alongamento na parte posterior da perna. Retorne à posição elevada de forma controlada.
+                            <strong>Dicas:</strong> O movimento deve ser <span class="keyword">lento e controlado</span>, especialmente na fase de descida (amplitude negativa). Mantenha o joelho levemente flexionado para evitar sobrecarga. Não balance o corpo - o movimento deve ser apenas do <span class="keyword">tornozelo</span>. A amplitude negativa é importante para o ganho de força e flexibilidade. Se sentir dor no <span class="keyword">joelho esquerdo (membro lesionado)</span>, reduza a amplitude ou faça o exercício em pé no chão plano.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Prancha Dinâmica -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Prancha com elevação de perna</div>
+                            <div class="reps-badge">3 x 30s</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=rGpw_cUfIAg" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo Demonstrativo</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Fique em posição de <span class="keyword">prancha frontal</span>, apoiada nos antebraços ou nas mãos. Os cotovelos devem estar diretamente abaixo dos ombros. Mantenha o corpo em <span class="keyword">linha reta dos pés até a cabeça</span>. Os pés devem estar apoiados na ponta dos dedos. Contraia o <span class="keyword">abdômen</span> e mantenha o <span class="keyword">quadril</span> alinhado, sem deixá-lo cair ou subir.
+                            <strong>Execução:</strong> Mantenha a posição de prancha estável. Eleve alternadamente uma perna estendida, mantendo-a reta e alinhada com o tronco. O movimento deve ser controlado e a perna deve subir até aproximadamente a altura do quadril. Não gire o <span class="keyword">quadril</span> ou o tronco durante a elevação. Mantenha o corpo estável e em linha reta. Retorne a perna à posição inicial de forma controlada e repita com a outra perna. Dê atenção especial quando elevar a <span class="keyword">perna esquerda (membro lesionado)</span>.
+                            <strong>Dicas:</strong> Mantenha o <span class="keyword">abdômen contraído</span> durante todo o exercício. Não deixe o quadril cair ou subir demais. O movimento deve ser apenas da <span class="keyword">perna</span>, mantendo o tronco estável. Respire de forma fluida durante a sustentação. Se sentir dor no <span class="keyword">joelho esquerdo</span>, reduza a amplitude da elevação ou mantenha a perna no chão.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Saltos e Saltitos -->
+                <article class="card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="exercise-title">Pliometria (Saltos)</div>
+                            <div class="reps-badge">Misto</div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=NRxiu6ERegA" target="_blank" rel="noopener noreferrer" class="video-link">Assistir Vídeo - Salto para frente</a>
+                        <a href="https://www.youtube.com/watch?v=5VREiqhvQTk" target="_blank" rel="noopener noreferrer" class="video-link" style="margin-top: 8px;">Assistir Vídeo - Saltito no lugar</a>
+                        <div class="instructions">
+                            <strong>Posição Inicial:</strong> Para o <span class="keyword">Salto para frente</span>, fique em pé com os pés afastados na largura do quadril. Para o <span class="keyword">Saltito no lugar</span>, fique em pé com os pés juntos. Mantenha o <span class="keyword">tronco ereto</span>, ombros relaxados e joelhos levemente flexionados.
+                            <strong>Execução:</strong> <strong>Salto para frente:</strong> 3x10 - Flexione os joelhos e os quadris, descendo em um agachamento parcial. Impulsione o corpo para frente, saltando o mais longe possível. Aterrisse com ambos os pés simultaneamente, com os joelhos flexionados para absorver o impacto. O foco deve estar na <span class="keyword">aterrissagem suave</span> (sem barulho). <strong>Saltito no lugar:</strong> 3x30s - Pule no lugar de forma rápida e leve, como se estivesse pulando corda. Mantenha os joelhos levemente flexionados e aterrisse na ponta dos pés. O movimento deve ser rápido e contínuo.
+                            <strong>Dicas:</strong> A aterrissagem deve ser <span class="keyword">silenciosa</span> - se fizer barulho, o impacto está muito alto. Mantenha os joelhos <span class="keyword">alinhados</span> com os pés durante a aterrissagem. Se sentir dor ou instabilidade no <span class="keyword">joelho esquerdo (membro lesionado)</span>, reduza a intensidade ou pule o exercício temporariamente. Priorize a qualidade do movimento sobre a distância ou velocidade. Comece com poucas repetições e aumente gradualmente.
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Clínica Pace</h3>
+            <p>Elaborado por <strong>Vitor Vaz</strong> – Fisioterapeuta (Crefito 3/297100)</p>
+            <br>
+            <p style="font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; margin-top: 15px;">
+                Treino individualizado. Respeite seus limites.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
